@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+<div ng-controller="userCtrl" class="container">
+
+<input type="hidden" id="uid" value="{{uid}}" />
+
+<div class="row" style="font-size:20px;padding:15px">||user.user.name||</div>
+<div class="row" style="font-size:20px;padding:10px">Total points: ||user.user.tpoints|| ,  Bets: ||user.user.nbets||</div>
+
+    <table class="table table-striped" ng-show="user.user.nbets != 0">
+        <thead>
+        <td></td>
+        <td></td>
+        <td>Winner</td>
+        <td>Points</td>
+        </thead>
+        <tr ng-repeat="r in user.bets">
+         <td>||r.t1||</td>
+         <td>||r.t2||</td>
+         <td>||r.beton|| / ||r.winner||</td>
+         <td>||r.upoints||</td>
+        </tr>
+    </table>
+
+
+</div>
+{% endblock %}

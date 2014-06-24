@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+<div ng-controller="matchCtrl" class="container">
+
+<input type="hidden" id="mid" value="{{mid}}" />
+
+    <div class="row" style="font-size:20px;padding:15px">Match # {{mid}}</div>
+
+    <div class="row" align="center">
+
+        <div class="col-md-6">
+
+            <div style="font-size:30px"> <img src="/static/flags/||bets.1.team.name||.png" /> ||bets.1.team.name|| </div>
+            <hr>
+            <div ng-repeat="u in bets.1.bets">||u||</div>
+        </div>
+        <div class="col-md-6">
+
+            <div style="font-size:30px"><img src="/static/flags/||bets.2.team.name||.png" /> ||bets.2.team.name|| </div>
+            <hr>
+            <div ng-repeat="u in bets.2.bets">||u||</div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

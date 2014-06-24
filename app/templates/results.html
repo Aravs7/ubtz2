@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container" ng-controller="resultCtrl" style="font-family: 'Open Sans', sans-serif;padding:0px">
+    <div class="col-md-12">
+        <div class="row" >
+
+
+
+
+            <br>
+            <div class="row" style="margin-bottom:6px;font-size:18px;color:#a4a4a4">
+                <i style="position:relative;" class="fa fa-arrow-circle-o-down"></i>  Completed
+            </div>
+
+            <div class="row">
+                <table class="table table-hover">
+                    <thead>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    </thead>
+                    <tr ng-repeat="m in allMatches | orderBy:'mid':true" ng-show="m.gamestart=='past' ">
+                        <td style="width:30%">
+
+                            <h4 style="font-size:20px"><img class="" style="border:solid 1px #f7f7f7" src="/static/flags/||m.t1.name||.png"/>&nbsp;&nbsp;&nbsp;
+                                ||m.t1.name|| <span class="badge" ng-show="m.t1.id == m.winnerid">winner</span></h4>
+                        <span ng-repeat="u in m.t1.bets"><a href="/profile/||u.id||">||u.name||</a>&nbsp;</span>
+                        </td>
+
+                        <td style="width:10%" align="center">VS</td>
+
+                        <td style="width:30%" align="right"><h4 style="font-size:20px"><span class="badge" ng-show="m.t2.id == m.winnerid">winner</span> ||m.t2.name||&nbsp;&nbsp;&nbsp;
+                            <img style="border:solid 1px #f7f7f7" src="/static/flags/||m.t2.name||.png"/>
+                         </h4>
+                                                <span ng-repeat="u in m.t2.bets"><a href="/profile/||u.id||">||u.name||</a>&nbsp;</span></td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

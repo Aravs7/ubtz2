@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div ng-controller="leaderCtrl" style="font-family: 'Open Sans', sans-serif;padding:0px">
+
+<div class="row">
+
+     <table class="table table-striped">
+                <thead>
+                <td>Rank</td>
+                <td></td>
+                <td align="center">Points</td>
+                </thead>
+                <tr ng-repeat="u in leaders | orderBy:'rank'" style="font-size:22px">
+                    <td>#||u.rank +1||</td>
+                    <td><a href="/profile/||u.uid||" style="text-decoration:none"><img class="img-circle" src="/static/data/pics/||u.image||" style="width:45px;height:45px" />&nbsp;&nbsp;&nbsp;<font style="position:relative;top:2px">  ||u.name||</font> </a></td>
+                    <td align="center">||u.upoints||</td>
+                </tr>
+
+            </table>
+
+</div>
+
+
+
+</div>
+
+{% endblock %}

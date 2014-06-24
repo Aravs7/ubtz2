@@ -1,0 +1,138 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container" ng-controller="testCtrl" style="font-family: 'Open Sans', sans-serif;padding:0px">
+    <div class="col-md-12">
+        <div class="row" >
+
+            <br>
+            <div class="row" style="margin-bottom:6px;font-size:18px;color:#a4a4a4">
+                <i style="position:relative;" class="fa fa-dot-circle-o"></i>  Today's matches
+            </div>
+
+            <div class="row">
+                <table class="table table-hover">
+                    <thead>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    </thead>
+
+                    <tr ng-repeat="m in allMatches" ng-show="m.gamestart=='now'">
+
+                        <td style="width:30%">
+
+                            <h4 tname  style="font-size:20px" data-toggle="popover" tooltip="hello world"><img class="" style="border:solid 1px #f7f7f7" src="/static/flags/||m.t1.name||.png"/>&nbsp;&nbsp;&nbsp;
+                                ||m.t1.name||</h4>
+
+                        </td>
+                        <td style="width:15%" align="left" ng-show="m.t1.id == m.beton && m.past == 0"><i style="color:#179354;font-size:24px;position:relative;top:10px" class="fa fa-thumbs-up"></i></td>
+                        <td style="width:15%" align="left" ng-show="m.t1.id == m.beton && m.past == 1"><i style="color:#a4a4a4;font-size:24px;position:relative;top:10px" class="fa fa-thumbs-up"></i></td>
+                        <td style="width:15%" align="left" ng-show="m.t1.id != m.beton && m.past == 0" ng-click="beton(m,m.mid,m.t1.name,m.t1.id)"><i style="font-size:22px;position:relative;top:10px;color:#dddddd" class="fa fa-thumbs-o-up"></i></td>
+                        <td style="width:15%" align="left" ng-show="m.t1.id != m.beton && m.past == 1"></td>
+
+                        <td style="width:10%" align="center">vs</td>
+
+                        <td style="width:15%" align="right" ng-show="m.t2.id == m.beton && m.past==0"><i style="color:#179354;font-size:24px;position:relative;top:10px" class="fa fa-thumbs-up"></i></td>
+                        <td style="width:15%" align="right" ng-show="m.t2.id == m.beton && m.past==1"><i style="color:#a4a4a4;font-size:24px;position:relative;top:10px" class="fa fa-thumbs-up"></i></td>
+                        <td style="width:15%" align="right" ng-show="m.t2.id != m.beton && m.past==0" ng-click="beton(m,m.mid,m.t2.name,m.t2.id)"><i style="font-size:24px;position:relative;top:10px;color:#dddddd" class="fa fa-thumbs-o-up"></i></td>
+                        <td style="width:15%" align="right" ng-show="m.t2.id != m.beton && m.past==1" ></td>
+                        <td style="width:30%" align="right"><h4 style="font-size:20px">||m.t2.name||&nbsp;&nbsp;&nbsp;<img style="border:solid 1px #f7f7f7" src="/static/flags/||m.t2.name||.png"/></h4></td>
+
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+            <br>
+            <div class="row" style="margin-bottom:6px;font-size:18px;color:#a4a4a4">
+                <i style="position:relative;" class="fa fa-arrow-circle-o-down"></i>  Upcoming
+            </div>
+
+            <div class="row">
+                <table class="table table-hover">
+                    <thead>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    </thead>
+
+                     <tr ng-repeat="m in allMatches" ng-show="m.gamestart=='future'">
+
+                        <td style="width:30%">
+
+                            <h4 tname  style="font-size:20px" data-toggle="popover" tooltip="hello world"><img class="" style="border:solid 1px #f7f7f7" src="/static/flags/||m.t1.name||.png"/>&nbsp;&nbsp;&nbsp;
+                                ||m.t1.name||</h4>
+
+                        </td>
+                        <td style="width:15%" align="left" ng-show="m.t1.id == m.beton && m.past == 0"><i style="color:#179354;font-size:24px;position:relative;top:10px" class="fa fa-thumbs-up"></i></td>
+                        <td style="width:15%" align="left" ng-show="m.t1.id == m.beton && m.past == 1"><i style="color:#a4a4a4;font-size:24px;position:relative;top:10px" class="fa fa-thumbs-up"></i></td>
+                        <td style="width:15%" align="left" ng-show="m.t1.id != m.beton && m.past == 0" ng-click="beton(m,m.mid,m.t1.name,m.t1.id)"><i style="font-size:22px;position:relative;top:10px;color:#dddddd" class="fa fa-thumbs-o-up"></i></td>
+                        <td style="width:15%" align="left" ng-show="m.t1.id != m.beton && m.past == 1"></td>
+
+                        <td style="width:10%" align="center">vs</td>
+
+                        <td style="width:15%" align="right" ng-show="m.t2.id == m.beton && m.past==0"><i style="color:#179354;font-size:24px;position:relative;top:10px" class="fa fa-thumbs-up"></i></td>
+                        <td style="width:15%" align="right" ng-show="m.t2.id == m.beton && m.past==1"><i style="color:#a4a4a4;font-size:24px;position:relative;top:10px" class="fa fa-thumbs-up"></i></td>
+                        <td style="width:15%" align="right" ng-show="m.t2.id != m.beton && m.past==0" ng-click="beton(m,m.mid,m.t2.name,m.t2.id)"><i style="font-size:24px;position:relative;top:10px;color:#dddddd" class="fa fa-thumbs-o-up"></i></td>
+                        <td style="width:15%" align="right" ng-show="m.t2.id != m.beton && m.past==1" ></td>
+                        <td style="width:30%" align="right"><h4 style="font-size:20px">||m.t2.name||&nbsp;&nbsp;&nbsp;<img style="border:solid 1px #f7f7f7" src="/static/flags/||m.t2.name||.png"/></h4></td>
+
+
+                    </tr>
+                </table>
+
+            </div>
+
+
+            <!--<br>-->
+            <!--<div class="row" style="margin-bottom:6px;font-size:18px;color:#a4a4a4">-->
+            <!--<i style="position:relative;" class="fa fa-arrow-circle-o-down"></i>  Completed-->
+            <!--</div>-->
+
+            <!--<div class="row">-->
+            <!--<table class="table table-hover">-->
+            <!--<thead>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <!--</thead>-->
+            <!--<tr ng-repeat="m in allMatches" ng-show="m.gamestart=='past'">-->
+            <!--<td style="width:30%">-->
+
+            <!--<h4 style="font-size:20px"><img class="" style="border:solid 1px #f7f7f7" src="/static/flags/||m.t1.name||.png"/>&nbsp;&nbsp;&nbsp;-->
+            <!--||m.t1.name||</h4></td>-->
+            <!--<td style="width:15%" align="left" ng-show="m.t1.id == m.beton"><i style="color:#179354;font-size:24px;position:relative;top:10px" class="fa fa-thumbs-up"></i></td>-->
+            <!--<td style="width:15%" align="left" ng-show="m.t1.id != m.beton" ng-click="beton(m,m.mid,m.t1.name,m.t1.id)"><i style="font-size:22px;position:relative;top:10px;color:#a4a4a4" class="fa fa-thumbs-o-up"></i></td>-->
+
+            <!--<td style="width:10%" align="center"></td>-->
+
+            <!--<td style="width:15%" align="right" ng-show="m.t2.id == m.beton"><i style="color:#179354;font-size:24px;position:relative;top:10px" class="fa fa-thumbs-up"></i></td>-->
+            <!--<td style="width:15%" align="right" ng-show="m.t2.id != m.beton" ng-click="beton(m,m.mid,m.t2.name,m.t2.id)"><i style="font-size:24px;position:relative;top:10px;color:#a4a4a4" class="fa fa-thumbs-o-up"></i></td>-->
+            <!--<td style="width:30%" align="right"><h4 style="font-size:20px">||m.t2.name||&nbsp;&nbsp;&nbsp;-->
+            <!--<img style="border:solid 1px #f7f7f7" src="/static/flags/||m.t2.name||.png"/></h4></td>-->
+            <!--</tr>-->
+
+            <!--</table>-->
+
+            <!--</div>-->
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

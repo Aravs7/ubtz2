@@ -1,0 +1,137 @@
+ <div style="background:;min-height:1000px;border-left:solid 0px #a4a4a4;margin-left:10px" class="col-md-5">
+            <div style="padding:6px;background:#4aa322;color:#ffffff"><span class="glyphicon glyphicon-th-list"></span>&nbsp;Leaderboard
+            </div>
+
+
+
+
+
+
+            <table class="table table-striped table-bordered">
+                <thead>
+                <td>Rank</td>
+                <td>Name</td>
+                <td>Points</td>
+                </thead>
+                <tr ng-repeat="u in leaders | orderBy:'rank'">
+                    <td>#||u.rank +1||</td>
+                    <td>||u.name|| <a style="font-size:10px;color:grey" href="/showUser/||u.uid||"><span class="glyphicon glyphicon-align-justify"></span></a></td>
+                    <td>||u.upoints||</td>
+                </tr>
+
+            </table>
+
+
+        </div>
+
+
+
+
+//-----
+
+
+          <div style="border-right:solid 0px #a4a4a4;border-left:solid 0px #a4a4a4;" class="col-md-6">
+
+            <div class="row" style="padding:16px 0px 16px 16px;font-weight:bold;margin-bottom:6px;background:#f7f7f7"
+                    >
+                Today's matches
+            </div>
+            <div class="row" style="padding:16px 0px 16px 0px;margin-bottom:6px;border-bottom:solid 1px #f7f7f7;"
+                 ng-repeat="m in allMatches" ng-show="m.gamestart=='now'">
+
+                <div style="background:#eeeeee;color:#313131" class="col-md-4"
+                     ng-show="m.t1.id == m.beton && m.past == 1"
+                     align="center"><h4>||m.t1.name||</h4></div>
+                <div class="col-md-4" style="color:#a4a4a4" ng-show="m.t1.id != m.beton && m.past == 1"><h4>
+                    ||m.t1.name||</h4></div>
+                <div style="background:#dff2fd;color:#313131" class="col-md-4"
+                     ng-show="m.t1.id == m.beton && m.past == 0"
+                     align="center"><h4>||m.t1.name||</h4></div>
+                <div class="col-md-4" ng-click="beton(m,m.mid,m.t1.name,m.t1.id)"
+                     ng-show="m.t1.id != m.beton && m.past == 0"><h4>||m.t1.name||</h4></div>
+                <div class="col-md-4" align="center" style="position:relative;top:8px"><img
+                        src="/static/flags/||m.t1.name||.png"/>&nbsp;vs&nbsp;<img
+                        src="/static/flags/||m.t2.name||.png"/> <a style="font-size:10px;color:grey" href="/match/||m.mid||"><span class="glyphicon glyphicon-align-justify"></span></a></div>
+                <div style="background:#dff2fd;color:#313131" class="col-md-4" align="center"
+                     ng-show="m.t2.id == m.beton && m.past == 0"><h4>||m.t2.name||</h4></div>
+                <div class="col-md-4" align="right" ng-click="beton(m,m.mid,m.t2.name,m.t2.id)"
+                     ng-show="m.t2.id != m.beton && m.past == 0"><h4>||m.t2.name||</h4></div>
+                <div style="background:#eeeeee;color:#313131" class="col-md-4" align="center"
+                     ng-show="m.t2.id == m.beton && m.past == 1"><h4>||m.t2.name||</h4></div>
+                <div style="color:#a4a4a4" class="col-md-4" align="right" ng-show="m.t2.id != m.beton && m.past == 1">
+                    <h4>
+                        ||m.t2.name||</h4></div>
+
+            </div>
+
+
+            <div class="row" style="padding:16px 0px 16px 16px;font-weight:bold;margin-bottom:6px;background:#f7f7f7"
+                    >
+                Upcoming
+            </div>
+
+            <div class="row" style="padding:16px 0px 16px 0px;margin-bottom:6px;border-bottom:solid 1px #f7f7f7"
+                 ng-repeat="m in allMatches" ng-show="m.gamestart=='future'">
+
+                <div style="background:#a4a4a4;color:#313131" class="col-md-4"
+                     ng-show="m.t1.id == m.beton && m.past == 1"
+                     align="center"><h4>||m.t1.name||</h4></div>
+                <div class="col-md-4" style="color:#a4a4a4" ng-show="m.t1.id != m.beton && m.past == 1"><h4>
+                    ||m.t1.name||</h4></div>
+                <div style="background:#dff2fd;color:#313131" class="col-md-4"
+                     ng-show="m.t1.id == m.beton && m.past == 0"
+                     align="center"><h4>||m.t1.name||</h4></div>
+                <div class="col-md-4" ng-click="beton(m,m.mid,m.t1.name,m.t1.id)"
+                     ng-show="m.t1.id != m.beton && m.past == 0"><h4>||m.t1.name||</h4></div>
+                <div class="col-md-4" align="center" style="position:relative;top:8px"><img
+                        src="/static/flags/||m.t1.name||.png"/>&nbsp;vs&nbsp;<img
+                        src="/static/flags/||m.t2.name||.png"/> <a style="font-size:10px;color:grey" href="/match/||m.mid||"><span class="glyphicon glyphicon-align-justify"></span></a></div>
+                <div style="background:#dff2fd;color:#313131" class="col-md-4" align="center"
+                     ng-show="m.t2.id == m.beton && m.past == 0"><h4>||m.t2.name||</h4></div>
+                <div class="col-md-4" align="right" ng-click="beton(m,m.mid,m.t2.name,m.t2.id)"
+                     ng-show="m.t2.id != m.beton && m.past == 0"><h4>||m.t2.name||</h4></div>
+                <div style="background:#a4a4a4;color:#313131" class="col-md-4" align="center"
+                     ng-show="m.t2.id == m.beton && m.past == 1"><h4>||m.t2.name||</h4></div>
+                <div style="color:#a4a4a4" class="col-md-4" align="right" ng-show="m.t2.id != m.beton && m.past == 1">
+                    <h4>
+                        ||m.t2.name||</h4></div>
+
+            </div>
+
+
+            <div class="row" style="padding:16px 0px 16px 16px;font-weight:bold;margin-bottom:6px;background:#f7f7f7"
+                    >
+                Previous
+            </div>
+            <div class="row" style="padding:16px 0px 16px 0px;margin-bottom:6px;border-bottom:solid 1px #f7f7f7"
+                 ng-repeat="m in allMatches" ng-show="m.gamestart=='past'">
+
+                <div style="background:#a4a4a4;color:#313131" class="col-md-4"
+                     ng-show="m.t1.id == m.beton && m.past == 1"
+                     align="center"><h4>||m.t1.name||</h4></div>
+                <div class="col-md-4" style="color:#a4a4a4" ng-show="m.t1.id != m.beton && m.past == 1"><h4>
+                    ||m.t1.name||</h4></div>
+                <div style="background:#dff2fd;color:#313131" class="col-md-4"
+                     ng-show="m.t1.id == m.beton && m.past == 0"
+                     align="center"><h4>||m.t1.name||</h4></div>
+                <div class="col-md-4" ng-click="beton(m,m.mid,m.t1.name,m.t1.id)"
+                     ng-show="m.t1.id != m.beton && m.past == 0"><h4>||m.t1.name||</h4></div>
+                <div class="col-md-4" align="center" style="position:relative;top:8px"><img
+                        src="/static/flags/||m.t1.name||.png"/>&nbsp;vs&nbsp; <a style="font-size:10px;color:grey" href="/match/||m.mid||"><span class="glyphicon glyphicon-align-justify"></span></a><img
+                        src="/static/flags/||m.t2.name||.png"/></div>
+                <div style="background:#dff2fd;color:#313131" class="col-md-4" align="center"
+                     ng-show="m.t2.id == m.beton && m.past == 0"><h4>||m.t2.name||</h4></div>
+                <div class="col-md-4" align="right" ng-click="beton(m,m.mid,m.t2.name,m.t2.id)"
+                     ng-show="m.t2.id != m.beton && m.past == 0"><h4>||m.t2.name||</h4></div>
+                <div style="background:#a4a4a4;color:#313131" class="col-md-4" align="center"
+                     ng-show="m.t2.id == m.beton && m.past == 1"><h4>||m.t2.name||</h4></div>
+                <div style="color:#a4a4a4" class="col-md-4" align="right" ng-show="m.t2.id != m.beton && m.past == 1">
+                    <h4>
+                        ||m.t2.name||</h4></div>
+
+            </div>
+
+
+            <!--</table>-->
+        </div>
+        <!--<div class="col-md-1"></div>-->

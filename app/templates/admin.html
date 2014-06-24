@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container-fluid" style="padding:2px 0px 0px 0px" ng-controller="adminCtrl">
+    <div class="row">
+        <div style="" class="col-md-6">
+
+             <div class="row" style="padding:16px 0px 16px 16px;font-weight:bold;margin-bottom:6px;background:#f2f2f2"
+             >
+                Today's matches
+            </div>
+
+            <div class="row" style="padding:16px 0px 16px 0px;margin-bottom:6px;border-bottom:solid 1px #a4a4a4" ng-repeat="m in allMatches">
+
+                 <div style="background:#045fb4;color:white" class="col-md-4"  ng-show="m.t1.id == m.winner.id" align="center"><h4>||m.t1.name||</h4></div>
+                 <div class="col-md-4" ng-click="setWinner(m,m.t1)" ng-show="m.t1.id != m.winner.id"><h4>||m.t1.name||</h4></div>
+                 <div class="col-md-4" align="center">vs</div>
+                 <div style="background:#045fb4;color:white" class="col-md-4" align="center"  ng-show="m.t2.id == m.winner.id"><h4>||m.t2.name||</h4></div>
+                 <div class="col-md-4" align="right" ng-click="setWinner(m,m.t2)" ng-show="m.t2.id != m.winner.id"><h4>||m.t2.name||</h4></div>
+
+
+            </div>
+                 <!--</table>-->
+        </div>
+        <div style="background:yellow" class="col-md-6">
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

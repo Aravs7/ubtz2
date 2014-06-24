@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="bets">
+<head>
+    <title>Flask App</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+    <script src="/static/js/app.js"></script>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background:#326295">
+
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <h4 style="font-size:22px;position:relative;left:-3px; "><i style="color:white"><b><font
+                        style="color:#ffffff">Super</font><font style="color:#ffffff">Bets</font> v1.0</b></i></h4>
+            </div>
+            <div class="collapse navbar-collapse" style="position:absolute;right:5px;background:#326295">
+                <ul class="nav navbar-nav">
+                <li class="active"  style="background:#326295"><a style="background:#326295" href="/logout" >{% if current_user.is_authenticated() %}
+    Logout
+        {% endif %}</a></li>
+                <!--<li><a href="#about">About</a></li>-->
+                <!--<li><a href="#contact">Contact</a></li>-->
+                </ul>
+
+                 <span style="">
+    </span>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+</head>
+<body style="background-image:url('/static/flags/fifw.jpg')">
+
+<div class="container" >
+    {% block content %}
+    {% endblock %}
+</div>
+<div id="error"></div>
+</body>
+</html>

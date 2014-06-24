@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<div class="container" ng-controller="profileCtrl" style="font-family: 'Open Sans', sans-serif;padding:0px;">
+    <input id="uid" type="hidden" value="{{uid}}" />
+
+    <div class="row" style="padding:0px">
+
+
+
+        <table class="">
+
+            <tr>
+                <td align="left" style="width:10%">
+                    <table class="">
+
+                        <tr>
+                            <td><img class="img-circle" src="/static/data/pics/||userd.user.image||" style="width:100px;height:100px" /></td>
+                        </tr>
+
+                        <tr>
+                            <td align="center">
+                                <form id="myForm" action="/fileupload/{{uid}}" method="post">
+
+                                    <span ng-show="userd.user.uid == userd.user.cuserid">
+                                    <a onclick="javascript:$('#file').trigger('click')" style="position:relative;top:-4px">change</a>
+                                    <input type="file" id="file" name="file" size="10" style="background:white;;display:none"/>
+                                   </span>
+
+
+
+                                </form>
+                            </td>
+                        </tr>
+
+                    </table>
+
+
+
+
+                </td>
+
+                <td style="width:38%" align="left">
+                    <h2 style="position:relative;top:14px">||userd.user.name||</h2>
+                </td>
+
+                <td style="width:26%" align="left">
+                    <h3 style="position:relative;top:14px">Bets: ||userm.user.nbets||</h3>
+                </td>
+
+                <td style="width:26%" align="left">
+                    <h3 style="position:relative;top:14px">Points: ||userm.user.tpoints||</h3>
+                </td>
+
+            </tr>
+
+        </table>
+
+
+
+
+    </div>
+
+
+    <hr>
+
+    <table class="table table-striped" ng-show="userm.user.nbets != 0">
+        <thead>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Chosen</td>
+        <td>Winner</td>
+        <td>Points</td>
+        </thead>
+        <tr ng-repeat="r in userm.bets">
+            <td style="width:15%" align="left"><img class="" style="border:solid 1px #f7f7f7" src="/static/flags/||r.t1||.png"/> ||r.t1||</td>
+            <td style="width:15%" align="left">Vs</td>
+            <td style="width:15%" align="left"><img class="" style="border:solid 1px #f7f7f7" src="/static/flags/||r.t2||.png"/> ||r.t2||</td>
+            <td>
+                <img class="" style="border:solid 1px #f7f7f7" src="/static/flags/||r.beton||.png"/>
+            </td>
+            <td> <img class="" style="border:solid 1px #f7f7f7" src="/static/flags/||r.winner||.png"/></td>
+            <td>||r.upoints||</td>
+        </tr>
+    </table>
+
+
+</div>
+
+{% endblock %}
